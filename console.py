@@ -1,385 +1,247 @@
 #!/usr/bin/python3
-"""
-Command interpreter for the Instakush web app
-"""
+'''
+    Implementing the console for the HBnB project.
+'''
 import cmd
-from models import storage, CNC
+import json
+import shlex
+import models
+from models.base_model import BaseModel
+from models.user import User
+from models.driver import Driver
+from models.dispensary import Dispensary
+from models.item import Item
+from models.order import Order
 
 
 class instakushCommand(cmd.Cmd):
-    """
-    Command line interpreter class
-    """
-    prompt = '(instakush) '
-    ERR = [
-        '** class name missing **',
-        '** class doesn\'t exist **',
-        '** instance id missing **',
-        '** no instance found **',
-        '** attribute name missing **',
-        '** value missing **',
-        ]
+    '''
+        Contains the entry point of the command interpreter.
+    '''
 
-    def preloop(self):
-        """
-        handles intro to command interpreter
-        """
-        print('.----------------------------.')
-        print('|  Welcome to instakush CLI! |')
-        print('|   for help, input \'help\'   |')
-        print('|   for quit, input \'quit\'   |')
-        print('.----------------------------.')
+    prompt = ("(instakush) ")
 
-    def postloop(self):
+    def do_echo(self, args):
         """
-        handles exit to command interpreter
+        Echo method
         """
-        print('.----------------------------.')
-        print('|  Well, that sure was fun!  |')
-        print('.----------------------------.')
+        print(args)
+        print(type(args))
 
-    def default(self, line):
-        """
-        default response for unknown commands
-        """
-        print("This \"{}\" is invalid, run \"help\" "
-              "for more explanations".format(line))
+    def do_quit(self, args):
+        '''
+            Quit command to exit the program.
+        '''
+        return True
+
+    def do_EOF(self, args):
+        '''
+            Exits after receiving the EOF signal.
+        '''
+        return True
+
+    def do_create(self, args):
+        '''
+            Create a new instance of class BaseModel and saves it
+            to the JSON file.
+        '''
+        if len(args) == 0:
+            print("** class name missing **")
+            return
+        try:
+            args = shlex.split(args)
+            kwargs = self.parse_input(args)
+            new_instance = eval(args[0])()
+            for key, value in kwargs.items():
+                setattr(new_instance, key, value)
+            new_instance.save()
+            print(new_instance.id)
+
+        except Exception as e:
+            print("** class doesn't exist **")
+
+    def do_show(self, args):
+        '''
+            Print the string representation of an instance baed on
+            the class name and id given as args.
+        '''
+        args = shlex.split(args)
+        if len(args) == 0:
+            print("** class name missing **")
+            return
+        if len(args) == 1:
+            print("** instance id missing **")
+            return
+
+        obj_dict = models.storage.all()
+        try:
+            eval(args[0])
+        except NameError:
+            print("** class doesn't exist **")
+            return
+        key = args[0] + "." + args[1]
+        key = args[0] + "." + args[1]
+        try:
+            value = obj_dict[key]
+            print(value)
+        except KeyError:
+            print("** no instance found **")
+
+    def do_destroy(self, args):
+        '''
+            Deletes an instance based on the class name and id.
+        '''
+        args = shlex.split(args)
+        if len(args) == 0:
+            print("** class name missing **")
+            return
+        elif len(args) == 1:
+            print("** instance id missing **")
+            return
+        class_name = args[0]
+        class_id = args[1]
+
+        obj_dict = models.storage.all()
+        try:
+            eval(class_name)
+        except NameError:
+            print("** class doesn't exist **")
+            return
+        key = class_name + "." + class_id
+        try:
+            del obj_dict[key]
+        except KeyError:
+            print("** no instance found **")
+        models.storage.save()
+
+    def do_all(self, args):
+        '''
+            Prints all string representation of all instances
+            based or not on the class name.
+        '''
+        obj_list = []
+        objects = models.storage.all()
+        try:
+            if len(args) != 0:
+                eval(args)
+        except NameError:
+            print("** class doesn't exist **")
+            return
+        for key, val in objects.items():
+            if len(args) != 0:
+                if type(val) is eval(args):
+                    obj_list.append(val)
+            else:
+                obj_list.append(val)
+
+        print(obj_list)
+
+
+    def do_update(self, args):
+        '''
+            Update an instance based on the class name and id
+            sent as args.
+        '''
+        args = shlex.split(args)
+        if len(args) == 0:
+            print("** class name missing **")
+            return
+        elif len(args) == 1:
+            print("** instance id missing **")
+            return
+        elif len(args) == 2:
+            print("** attribute name missing **")
+            return
+        elif len(args) == 3:
+            print("** value missing **")
+            return
+        try:
+            eval(args[0])
+        except NameError:
+            print("** class doesn't exist **")
+            return
+        key = args[0] + "." + args[1]
+        obj_dict = models.storage.all()
+        try:
+            obj_value = obj_dict[key]
+        except KeyError:
+            print("** no instance found **")
+            return
+        try:
+            attr_type = type(getattr(obj_value, args[2]))
+            args[3] = attr_type(args[3])
+        except AttributeError:
+            pass
+        setattr(obj_value, args[2], args[3])
+        obj_value.save()
 
     def emptyline(self):
-        """
-        Called when an empty line is entered in response to the prompt.
-        """
+        '''
+            Prevents printing anything when an empty line is passed.
+        '''
         pass
 
-    def __class_err(self, arg):
-        """
-        private: checks for missing class or unknown class
-        """
-        error = 0
-        if len(arg) == 0:
-            print(instakushCommand.ERR[0])
-            error = 1
-        else:
-            if isinstance(arg, list):
-                arg = arg[0]
-            if arg not in CNC.keys():
-                print(instakushCommand.ERR[1])
-                error = 1
-        return error
-
-    def __id_err(self, arg):
-        """
-        private checks for missing ID or unknown ID
-        """
-        error = 0
-        if (len(arg) < 2):
-            error += 1
-            print(instakushCommand.ERR[2])
-        if not error:
-            storage_objs = storage.all()
-            for key, value in storage_objs.items():
-                temp_id = key.split('.')[1]
-                if temp_id == arg[1] and arg[0] in key:
-                    return error
-            error += 1
-            print(instakushCommand.ERR[3])
-        return error
-
-    def do_instakush(self, arg):
-        """instakush: instakush
-        SYNOPSIS: Command changes prompt string"""
-        print("                      __ ___                        ")
-        print("    _     _  _ _||\ |/  \ | _  _  _|_|_     _  _ _| ")
-        print("|_||_)\)/(_|| (_|| \|\__/ || )(_)| |_| )\)/(_|| (_| ")
-        print("   |                                                ")
-        if instakushCommand.prompt == '(instakush) ':
-            instakushCommand.prompt = " /_ /_ _  /_\n/ //_// //_/ "
-        else:
-            instakushCommand.prompt = '(instakush) '
-        arg = arg.split()
-        error = self.__class_err(arg)
-
-    def do_quit(self, line):
-        """quit: quit
-        USAGE: Command to quit the program
-        """
-        return True
-
-    def do_EOF(self, line):
-        """function to handle EOF"""
-        print()
-        return True
-
-    def __isfloat(self, val):
-        """
-        checks if a string may be converted to a float
-        """
+    def do_count(self, args):
+        '''
+            Counts/retrieves the number of instances.
+        '''
+        obj_list = []
+        objects = models.storage.all()
         try:
-            float(val)
-            return True
-        except:
-            return False
-
-    def __update_val(self, v):
-        """updates string to proper type, either int, float, or
-        string with proper spaces and " symbols"""
-        if v[0] == '"' and v[-1] == '"':
-            v = v[1:-1]
-            v = v.replace('"', '\"')
-            v = v.replace('_', ' ')
-            return v
-        if v.isdigit():
-            v = int(v)
-        elif self.__isfloat(v):
-            v = float(v)
-        return v
-
-    def __create_dict(self, attr_dict, arg):
-        """creates dictionary from input paramaters of create() function"""
-        for params in arg:
-            if '=' in params:
-                i = params.index('=')
-                if i < len(params) - 1:
-                    k = params[:i]
-                    v = params[(i + 1):]
-                    v = self.__update_val(v)
-                    attr_dict[k] = v
-        return attr_dict
-
-    def do_create(self, arg):
-        """create: create [ARG] [PARAM 1] [PARAM 2] ...
-        ARG = Class Name
-        PARAM = <key name>=<value>
-                value syntax: "<value>"
-        SYNOPSIS: Creates a new instance of the Class from given input ARG
-                  and PARAMS. Key in PARAM = an instance attribute.
-        EXAMPLE: create City name="Chicago"
-                 City.create(name="Chicago")
-        """
-        arg = arg.split()
-        error = self.__class_err(arg)
-        if error:
+            if len(args) != 0:
+                eval(args)
+        except NameError:
+            print("** class doesn't exist **")
             return
-        k = arg[0]
-        class_obj = CNC[k]
-        if len(arg) > 1:
-            d = self.__create_dict({}, arg[1:])
-        else:
-            d = {}
-        my_obj = class_obj(**d)
-        my_obj.save()
-        print(my_obj.id)
-
-    def do_show(self, arg):
-        """show: show [ARG] [ARG1]
-        ARG = Class
-        ARG1 = ID #
-        SYNOPSIS: Prints object of given ID from given Class"""
-        arg = arg.split()
-        error = self.__class_err(arg)
-        if not error:
-            error += self.__id_err(arg)
-        if not error:
-            storage_objs = storage.all()
-            for k, v in storage_objs.items():
-                if arg[1] in k and arg[0] in k:
-                    print(v)
-
-    def do_all(self, arg):
-        """all: all [ARG]
-        ARG = Class
-        SYNOPSIS: prints all objects of given class
-        EXAMPLE: all City
-                 City.all()
-        """
-        arg = arg.split()
-        error = 0
-        if arg:
-            error = self.__class_err(arg)
-            if error:
-                return
-        print('[', end='')
-        l = 0
-        if arg:
-            storage_objs = storage.all(arg[0])
-        else:
-            storage_objs = storage.all()
-        l = len(storage_objs)
-        c = 0
-        for v in storage_objs.values():
-            c += 1
-            print(v, end=(', ' if c < l else ''))
-        print(']')
-
-    def do_destroy(self, arg):
-        """destroy: destroy [ARG] [ARG1]
-        ARG = Class
-        ARG1 = ID #
-        SYNOPSIS: destroys object of given ID from given Class
-        EXAMPLE: destroy City 1234-abcd-5678-efgh
-                 City.destroy(1234-abcd-5678-efgh)
-        """
-        arg = arg.split()
-        error = self.__class_err(arg)
-        if not error:
-            error += self.__id_err(arg)
-        if error:
-            return
-        storage_objs = storage.all()
-        for k in storage_objs.keys():
-            if arg[1] in k and arg[0] in k:
-                to_delete = storage_objs[k]
-        to_delete.delete()
-        storage.save()
-
-    def __rremove(self, s, l):
-        """
-        private: removes characters in the input list from input string
-        """
-        for c in l:
-            s = s.replace(c, '')
-        return s
-
-    def __check_dict(self, arg):
-        """
-        private: checks if the arguments input has a dictionary
-        """
-        if '{' and '}' in arg:
-            l = arg.split('{')[1]
-            l = l.split(', ')
-            l = list(s.split(':') for s in l)
-            d = {}
-            for subl in l:
-                k = subl[0].strip('"\' {}')
-                v = subl[1].strip('"\' {}')
-                d[k] = v
-            return d
-        else:
-            return None
-
-    def __handle_update_err(self, arg):
-        """
-        private: checks for all errors in update
-        """
-        d = self.__check_dict(arg)
-        arg = self.__rremove(arg, [',', '"'])
-        arg = arg.split()
-        error = self.__class_err(arg)
-        if not error:
-            error += self.__id_err(arg)
-        if error:
-            return [0]
-        valid_id = 0
-        storage_objs = storage.all()
-        for k in storage_objs.keys():
-            if arg[1] in k and arg[0] in k:
-                key = k
-        if len(arg) < 3:
-            print(instakushCommand.ERR[4])
-        elif len(arg) < 4:
-            print(instakushCommand.ERR[5])
-        else:
-            return [1, arg, d, storage_objs, key]
-        return [0]
-
-    def do_update(self, arg):
-        """update: update [ARG] [ARG1] [ARG2] [ARG3]
-        ARG = Class
-        ARG1 = ID #
-        ARG2 = attribute name
-        ARG3 = value of new attribute
-        SYNOPSIS: updates or adds a new attribute and value of given Class
-        EXAMPLE: update City 1234-abcd-5678-efgh name Chicago
-                 City.update(1234-abcd-5678-efgh, name, Chicago)
-                 City.update(1234-abcd, {'name': 'Chicago', 'address': 'None'})
-        """
-        arg_inv = self.__handle_update_err(arg)
-        if arg_inv[0]:
-            arg = arg_inv[1]
-            d = arg_inv[2]
-            storage_objs = arg_inv[3]
-            key = arg_inv[4]
-            if not d:
-                avalue = arg[3].strip('"')
-                if avalue.isdigit():
-                    avalue = int(avalue)
-                storage_objs[key].bm_update({arg[2]: avalue})
+        for key, val in objects.items():
+            if len(args) != 0:
+                if type(val) is eval(args):
+                    obj_list.append(val)
             else:
-                for k, v in d.items():
-                    if v.isdigit():
-                        v = int(v)
-                    storage_objs[key].bm_update({k: v})
+                obj_list.append(val)
+        print(len(obj_list))
 
-    def do_BaseModel(self, arg):
-        """class method with .function() syntax
-        Usage: BaseModel.<command>(<id>)"""
-        self.__parse_exec('BaseModel', arg)
 
-    def do_Amenity(self, arg):
-        """class method with .function() syntax
-        Usage: Amenity.<command>(<id>)"""
-        self.__parse_exec('Amenity', arg)
+    def default(self, args):
+        '''
+            Catches all the function names that are not expicitly defined.
+        '''
+        functions = {"all": self.do_all, "update": self.do_update,
+                     "show": self.do_show, "count": self.do_count,
+                     "destroy": self.do_destroy, "update": self.do_update}
+        args = (args.replace("(", ".").replace(")", ".")
+                .replace('"', "").replace(",", "").split("."))
 
-    def do_City(self, arg):
-        """class method with .function() syntax
-        Usage: City.<command>(<id>)"""
-        self.__parse_exec('City', arg)
+        try:
+            cmd_arg = args[0] + " " + args[2]
+            func = functions[args[1]]
+            func(cmd_arg)
+        except Exception:
+            print("*** Unknown syntax:", args[0])
 
-    def do_Place(self, arg):
-        """class method with .function() syntax
-        Usage: Place.<command>(<id>)"""
-        self.__parse_exec('Place', arg)
 
-    def do_Review(self, arg):
-        """class method with .function() syntax
-        Usage: Review.<command>(<id>)"""
-        self.__parse_exec('Review', arg)
+    def parse_input(self, args):
+        '''
+            Parses parameters and returns a dictionary
+        '''
+        pairs = [arg.split('=') for arg in args[1:]]
+        for pair in pairs:
+            if '_' in pair[1]:
+                pair[1] = pair[1].replace('_', ' ')
+            try:
+                if '[' in pair[1] or '(' in pair[1]:
+                    pair[1] = list(pair[1])
+                elif '.' in pair[1]:
+                    pair[1] = float(pair[1])
+                else:
+                    pair[1] = eval(pair[1])
+                #pair[1] = eval(pair[1])
+            except Exception:
+                pass
+        return dict(pairs)
 
-    def do_State(self, arg):
-        """class method with .function() syntax
-        Usage: State.<command>(<id>)"""
-        self.__parse_exec('State', arg)
-
-    def do_User(self, arg):
-        """class method with .function() syntax
-        Usage: User.<command>(<id>)"""
-        self.__parse_exec('User', arg)
-
-    def __count(self, arg):
-        """counts the number objects in File Storage"""
-        args = arg.split()
-        storage_objs = storage.all()
-        count = 0
-        for k in storage_objs.keys():
-            if args[0] in k:
-                count += 1
-        print(count)
-
-    def __parse_exec(self, c, arg):
-        """
-        private: parses the input from .function() syntax, calls matched func
-        """
-        CMD_MATCH = {
-            '.all': self.do_all,
-            '.count': self.__count,
-            '.show': self.do_show,
-            '.destroy': self.do_destroy,
-            '.update': self.do_update,
-            '.create': self.do_create,
-        }
-        if '(' and ')' in arg:
-            check = arg.split('(')
-            new_arg = "{} {}".format(c, check[1][:-1])
-            for k, v in CMD_MATCH.items():
-                if k == check[0]:
-                    if ((',' or '"' in new_arg) and k != '.update'):
-                        new_arg = self.__rremove(new_arg, ['"', ','])
-                    v(new_arg)
-                    return
-        self.default(arg)
-
-if __name__ == '__main__':
-    """
-    MAIN Loop
-    """
+if __name__ == "__main__":
+    '''
+        Entry point for the loop.
+    '''
     instakushCommand().cmdloop()
