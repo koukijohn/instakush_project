@@ -1,0 +1,88 @@
+class Dispensary
+~  ~  ~  ~   ~   ~
+
+    name = ''
+    username = ''
+    password = ''
+    address = ''
+
+create Dispensary name="The Apothecarium" username="apothecarium_staff" password="apotho13" address="2414 Lombard St, San Francisco, CA 94123"
+create Dispensary name="Grass Roots Dispensary" username="gr_staff" password="go_grassroots121" address="1077 Post St, San Francisco, CA 94109"
+create Dispensary name="The Green Cross" username="green_cross_staff" password="green_cross_88" address="4218 Mission St, San Francisco, CA 94112"
+
+
+
+==================================
+
+class Driver
+~  ~  ~  ~  ~  ~
+
+    name = ''
+    location = ''
+    username = ''
+    password = ''
+    marks = ''
+
+create Driver name="Cleve Strous" username="strous_mouse55" password="sillysally54" marks="0"
+create Driver name="Michael Fox" username="titan77" password="48carrots" marks="0"
+create Driver name="Granis Opal" username="tripleXOval" password="circletwirl22" marks="0"
+
+===================================
+
+class Item
+~  ~  ~  ~  ~
+
+    strain = ""
+    img_link = ""
+    dispensary_id = ""
+    description = ""
+    price = ""
+    company = ""
+    serving_size =""
+    stock = ""
+    cannabis_type = ""
+
+create Item strain="Lucy's Diamonds" img_link="" dispensary_id="826e434a-5db1-43ae-b1b8-8244b0ed1776" description="Total THC: 202.8 mg" price="$11.98" company="Flow Kana" serving_size="1 gram" stock="30" cannabis_type="Hybrid"
+create Item strain="Orange Zest" img_link="" dispensary_id="b123b185-fad0-4d9e-bcf9-c8cc6bbb1d4d" description="Total THC: 994 mg" price="$75" company="Flow Kana" serving_size="7.2 gram" stock="50" cannabis_type="Sativa"
+create Item strain="Strawberry Kush" img_link="" dispensary_id="6d75c33a-58f6-400c-861e-f71471de4551" description="Total THC: 231.07 mg" price="$35.94" company="Autumn Brands" serving_size="3.5 gram" stock="88" cannabis_type="Indica"
+
+=========================================
+
+class Order
+~  ~  ~  ~  ~
+
+    mode = ""
+    user_id = ""
+    dispensary_id = ""
+    item_id = ""
+
+create Order mode="Delivered" user_id="2c014323-b6d4-44b4-912c-f1fb578ba487" dispensary_id="826e434a-5db1-43ae-b1b8-8244b0ed1776" item_id="42bc898a-6c56-4b49-a037-d8f0cb8190db"
+create Order mode="In process" user_id="9e280c7e-a5dc-4b03-b9c4-83df43a9d822" dispensary_id="6d75c33a-58f6-400c-861e-f71471de4551" item_id="4413e28e-c46a-4caf-9233-c1d77a28651e"
+create Order mode="Delivered" user_id="d5600ec5-0f37-438e-a7f8-1b01da20b115" dispensary_id="8645bc0b-81b6-477b-9470-b5628a6f1606" item_id="1b25f263-033f-46fc-9fc8-19af78485081"
+
+
+==========================================
+
+class User
+~  ~  ~  ~  ~  ~
+
+    name = ''
+    address = ''
+    username = ''
+    password = ''
+    phone = ''
+
+create User name="Mac Griddle" address="263 Driftwood Road, San Francisco, CA, 94108" username="Yogibear_21" password="passdat45" phone="415 201 5329"
+create User name="Lily Crown" address="4655 Sycamore Street, San Francisco, CA, 94104" username="space_invader99" password="pleasetomeet7" phone="415-740-4581"
+create User name="Rick Shucks" address="4923 Meadow Lane, San Francisco, CA, 94124" username="rickyrocks00" password="gundamlover44" phone="707-407-2695"
+
+===========================================
+
+
+The Green Cross (id:8645bc0b-81b6-477b-9470-b5628a6f1606)
+Grass Roots Dispensary (id:6d75c33a-58f6-400c-861e-f71471de4551)
+The Apothecarium (id:2da8148d-eddf-4d23-9518-161952a87b45)
+Realeaf+ (id:93c46608-67ff-43b4-98ff-a11e5f638817)
+Hidden Leaf (id:b123b185-fad0-4d9e-bcf9-c8cc6bbb1d4d)
+Barbary Coast (id:826e434a-5db1-43ae-b1b8-8244b0ed1776)
+
