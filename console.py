@@ -49,18 +49,12 @@ class instakushCommand(cmd.Cmd):
             print("** class name missing **")
             return
         try:
-            print(1)
             args = shlex.split(args)
-            print(2)
             kwargs = self.parse_input(args)
-            print(3)
             new_instance = eval(args[0])()
-            print(4)
             for key, value in kwargs.items():
                 setattr(new_instance, key, value)
-            print(5)
             new_instance.save()
-            print(6)
             print(new_instance.id)
 
         except Exception as e:
