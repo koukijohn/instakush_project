@@ -148,6 +148,8 @@ class instakushCommand(cmd.Cmd):
             print()
 
 
+
+
     def do_update(self, args):
         '''
             Update an instance based on the class name and id
