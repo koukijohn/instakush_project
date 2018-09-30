@@ -49,15 +49,22 @@ class instakushCommand(cmd.Cmd):
             print("** class name missing **")
             return
         try:
+            print(1)
             args = shlex.split(args)
+            print(2)
             kwargs = self.parse_input(args)
+            print(3)
             new_instance = eval(args[0])()
+            print(4)
             for key, value in kwargs.items():
                 setattr(new_instance, key, value)
+            print(5)
             new_instance.save()
+            print(6)
             print(new_instance.id)
 
         except Exception as e:
+            print(e)
             print("** class doesn't exist **")
 
     def do_show(self, args):
@@ -134,7 +141,11 @@ class instakushCommand(cmd.Cmd):
             else:
                 obj_list.append(val)
 
-        print(obj_list)
+        #print(obj_list)
+        for obj in obj_list:
+            for key,value in obj.to_dict().items():
+                print("{}: {}".format(key,value))
+            print()
 
 
     def do_update(self, args):
@@ -227,7 +238,7 @@ class instakushCommand(cmd.Cmd):
         pairs = [arg.split('=') for arg in args[1:]]
         for pair in pairs:
             if '_' in pair[1]:
-                pair[1] = pair[1].replace('_', ' ')
+                pair[1] = pair[1].replace('_', '_')
             try:
                 if '[' in pair[1] or '(' in pair[1]:
                     pair[1] = list(pair[1])
@@ -238,6 +249,8 @@ class instakushCommand(cmd.Cmd):
                 #pair[1] = eval(pair[1])
             except Exception:
                 pass
+        print("converting to dict")
+        print(pairs)
         return dict(pairs)
 
 if __name__ == "__main__":
