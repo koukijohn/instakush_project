@@ -31,16 +31,13 @@ def instakush_home(the_id=None):
     cache_id = "?" + str(uuid.uuid4())
     #state_objs = storage.all('State').values()
     #states = dict([state.name, state] for state in state_objs)
-    #amens = storage.all('Amenity').values()
+    dispensary = storage.all('Dispensary').values()
     #places = storage.all('Place').values()
     #users = dict([user.id, "{} {}".format(user.first_name, user.last_name)]
      #            for user in storage.all('User').values())
     #print(states)
     return render_template('instakush.html',
-                           #states=states,
-                           #amens=amens,
-                           #places=places,
-                           #users=users,
+                           dispensary=dispensary,
                            cache_id=cache_id)
 
 if __name__ == "__main__":

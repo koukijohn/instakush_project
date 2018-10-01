@@ -1,0 +1,12 @@
+instakush@ubuntu:~/instakush$ cat setup_mysql_dev.sql | mysql -hlocalhost -uroot -p
+Enter password:
+instakush@ubuntu:~/instakush$ echo "SHOW DATABASES;" | mysql -uinstakush_dev -p | grep instakush_dev_db
+Enter password:
+instakush_dev_db
+instakush@ubuntu:~/instakush$ echo "SHOW GRANTS FOR 'instakush_dev'@'localhost';" | mysql -uroot -p
+Enter password:
+Grants for instakush_dev@localhost
+GRANT USAGE ON *.* TO 'instakush_dev'@'localhost'
+GRANT SELECT ON `performance_schema`.* TO 'instakush_dev'@'localhost'
+GRANT ALL PRIVILEGES ON `instakush_dev_db`.* TO 'instakush_dev'@'localhost'
+instakush@ubuntu:~/instakush$

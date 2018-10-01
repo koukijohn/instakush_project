@@ -1,0 +1,1 @@
+echo ‘ _CONSOLE_INPUT_ ’ | instakush_MYSQL_USER=instakush_dev instakush_MYSQL_PWD=instakush_dev_pwd instakush_MYSQL_HOST=localhost instakush_MYSQL_DB=instakush_dev_db instakush_TYPE_STORAGE=db ./instakush.py
