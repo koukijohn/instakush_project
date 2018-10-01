@@ -2,20 +2,24 @@
 '''
     Class representing a lesson
 '''
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
 import models
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
+from os import getenv
 import os
 
-class Item(BaseModel):
+class Item(BaseModel, Base):
     '''
         Definition of the Lesson class
     '''
-    strain = ""
-    img_link = ""
-    dispensary_id = ""
-    description = ""
-    price = ""
-    company = ""
-    serving_size =""
-    stock = ""
-    cannabis_type = ""
+    __tablename__ = 'item'
+    strain = Column(String(128), nullable=False)
+    img_link = Column(String(128), nullable=False)
+    dispensary_id = Column(String(128), nullable=False)
+    description = Column(String(128), nullable=False)
+    price = Column(String(128), nullable=False)
+    company = Column(String(128), nullable=False)
+    serving_size = Column(String(128), nullable=False)
+    stock = Column(String(128), nullable=False)
+    cannabis_type = Column(String(128), nullable=False)
