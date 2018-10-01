@@ -1,0 +1,15 @@
+@charset "UTF-8";
+/** Holberton Practice Styles
+ * ------ Header
+ */
+
+header {
+	background-color: #FFFFFF;
+	background-image: url("../images/Instakushlogo_v1.png");
+	background-repeat: no-repeat;
+	background-position: 20px 50%;
+	background-size: 10%;
+	height: 80px;
+	width: 100%;
+	border-bottom: 1px solid #CCCCCC;
+}
