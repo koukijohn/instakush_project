@@ -29,16 +29,21 @@ def instakush_home(the_id=None):
     handles request to custom template with
     """
     cache_id = "?" + str(uuid.uuid4())
-    #state_objs = storage.all('State').values()
-    #states = dict([state.name, state] for state in state_objs)
     dispensary = storage.all('Dispensary').values()
-    #places = storage.all('Place').values()
-    #users = dict([user.id, "{} {}".format(user.first_name, user.last_name)]
-     #            for user in storage.all('User').values())
-    #print(states)
     return render_template('instakush.html',
                            dispensary=dispensary,
                            cache_id=cache_id)
+@app.route('/drivers')
+def instakush_drivers(the_id=None):
+    """
+    template for instakush driver infrastructure
+    """
+    cache_id = "?" + str(uuid.uuid4())
+    drivers = storage.all('Driver').values()
+    return render_template('instakush.html',
+                           drivers=drivers,
+                           cache_id=cache_id)
+
 
 if __name__ == "__main__":
     """
