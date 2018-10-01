@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- HEAD -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>instakush</title>
+
+    <!-- JQuerry import -->
+    <SCRIPT src="https://code.jquery.com/jquery-3.2.1.min.js"></SCRIPT>
+
+    <!-- JS import  -->
+    <SCRIPT src="static/scripts/instakush.js"></SCRIPT>
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/Instakushlogo_v1.png') }}{{ cache_id }}" />
+
+    <!-- **********************
+	 CSS styles
+	 ********************** -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/4-common.css') }}{{ cache_id }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/3-header.css') }}{{ cache_id }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/3-footer.css') }}{{ cache_id }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/6-filters.css') }}{{ cache_id }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/8-places.css') }}{{ cache_id }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/font-awesome.css') }}{{ cache_id }}" />
+  </head>
+
+  <!-- **********************
+       BODY
+       ********************** -->
+
+  <body>
+
+    <!-- **********************
+	 HEADER
+	 ********************** -->
+
+    <header>
+      <div id="api_status"></div>
+    </header>
+    <main>
+      <div class="container">
+
+	<!-- **********************
+	     FILTERS
+	     ********************** -->
+
+	<section class="filters">
+
+	  <!-- **********************
+	       STATES
+	       ********************** -->
+
+	  <div class="locations">
+	    <h3>Zip Code:</h3>
+	    <h4>&nbsp;</h4>
+	  </div>
+
+	  <!-- **********************
+	       STRAINS
+	       ********************** -->
+
+	  <div class="amenities">
+	    <h3>Strains</h3>
+	    <h4>&nbsp;</h4>
+	    <ul class="popover">
+	      {% for amenity in amens|sort(attribute='name') %}
+	      <LI>
+		<INPUT type="checkbox" style="margin-right:10px;" data-id={{ amenity.id }} data-name='{{ amenity.name }}'/>
+		{{ amenity.name }}
+	      </LI>
+	      {% endfor %}
+	    </ul>
+	  </div>
+
+	  <!-- **********************
+	       SEARCH BUTTON
+	       ********************** -->
+
+	  <button>Search</button>
+	</section>
+
+	<section class="places">
+	  <h1>Dispensaries</h1>
+
+	  <!-- **********************
+	       DISPENSARIES
+	       ********************** -->
+
+	</section>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer>
+      By J&G for instakush
+    </footer>
+  </body>
+</html>
