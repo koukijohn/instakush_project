@@ -16,7 +16,7 @@ class Dispensary
     password = ''
     address = ''
 
-create Dispensary name="The Apothecarium" username="apothecarium_staff" password="apotho13" address="2414 Lombard St, San Francisco, CA 94123" *** done
+create Dispensary name="The Apothecarium" username="apothecarium_staff" password="apotho13" address="2414 Lombard St, San Francisco, CA 94123"
 create Dispensary name="Grass Roots Dispensary" username="gr_staff" password="go_grassroots121" address="1077 Post St, San Francisco, CA 94109"
 create Dispensary name="The Green Cross" username="green_cross_staff" password="green_cross_88" address="4218 Mission St, San Francisco, CA 94112"
 
