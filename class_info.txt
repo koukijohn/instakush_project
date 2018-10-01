@@ -1,3 +1,13 @@
+mysql obj creator
+~  ~  ~  ~  ~  ~  ~  ~  ~
+struct:
+
+echo ‘ _CONSOLE_INPUT_ ’ | instakush_MYSQL_USER=instakush_dev instakush_MYSQL_PWD=instakush_dev_pwd instakush_MYSQL_HOST=localhost instakush_MYSQL_DB=instakush_dev_db instakush_TYPE_STORAGE=db ./instakush.py
+done: strawberry kush
+
+need to:
+
+
 class Dispensary
 ~  ~  ~  ~   ~   ~
 
@@ -42,9 +52,9 @@ class Item
     stock = ""
     cannabis_type = ""
 
-create Item strain="Lucy's Diamonds" img_link="" dispensary_id="826e434a-5db1-43ae-b1b8-8244b0ed1776" description="Total THC: 202.8 mg" price="$11.98" company="Flow Kana" serving_size="1 gram" stock="30" cannabis_type="Hybrid"
-create Item strain="Orange Zest" img_link="" dispensary_id="b123b185-fad0-4d9e-bcf9-c8cc6bbb1d4d" description="Total THC: 994 mg" price="$75" company="Flow Kana" serving_size="7.2 gram" stock="50" cannabis_type="Sativa"
-create Item strain="Strawberry Kush" img_link="" dispensary_id="6d75c33a-58f6-400c-861e-f71471de4551" description="Total THC: 231.07 mg" price="$35.94" company="Autumn Brands" serving_size="3.5 gram" stock="88" cannabis_type="Indica"
+create Item strain="Lucy's Diamonds" img_link="images/lucy's_diamonds.png" dispensary_id="826e434a-5db1-43ae-b1b8-8244b0ed1776" description="Total THC: 202.8 mg" price="$11.98" company="Flow Kana" serving_size="1 gram" stock="30" cannabis_type="Hybrid"
+create Item strain="Orange Zest" img_link="images/Orange_zest.png" dispensary_id="b123b185-fad0-4d9e-bcf9-c8cc6bbb1d4d" description="Total THC: 994 mg" price="$75" company="Flow Kana" serving_size="7.2 gram" stock="50" cannabis_type="Sativa"
+create Item strain="Strawberry Kush" img_link="images/Strawberry_kush.png" dispensary_id="6d75c33a-58f6-400c-861e-f71471de4551" description="Total THC: 231.07 mg" price="$35.94" company="Autumn Brands" serving_size="3.5 gram" stock="88" cannabis_type="Indica"
 
 =========================================
 
@@ -78,7 +88,8 @@ create User name="Rick Shucks" address="4923 Meadow Lane, San Francisco, CA, 941
 
 ===========================================
 
-
+Dispensary names with id's
+~  ~  ~  ~  ~  ~  ~  ~  ~  ~
 The Green Cross (id:8645bc0b-81b6-477b-9470-b5628a6f1606)
 Grass Roots Dispensary (id:6d75c33a-58f6-400c-861e-f71471de4551)
 The Apothecarium (id:2da8148d-eddf-4d23-9518-161952a87b45)
