@@ -89,42 +89,43 @@
 
 	  <!-- **********************
 	       Items
+	       |sort(attribute='name')
 	       ********************** -->
-	  {% for items in item|sort(attribute='name') %}
+	  {% for items in item | sort(attribute='strain') %}
 	  <article>
 	    <div class="title">
-
-	      <h2>{{ items.strain }}</h2>
-
-	      <div class="price_by_night">
-
-		{{ items.price_by_night }}
-
-	      </div>
+	      <div class="information">
+		<h1>{{ items.strain }}</h1>
+		<h1>&nbsp;</h1>
+		</div>
+		<br>
+	    </div>
+	    <div class ="marijuana_images">
+	      <img src="../..{{ url_for('static', filename = items.img_link ) }}" width="390" height="300"/>
+	      <br>
+	      <br>
 	    </div>
 	    <div class="information">
 	      <div class="max_guest">
-		<i class="fa fa-users fa-3x" aria-hidden="true"></i>
+		<i class="fa fa-spoon fa-3x" aria-hidden="true"></i>
 
 		<br />
-
-		{{ items.max_guest }} Guests
+		Serving Size {{ items.serving_size }}s
 
 	      </div>
 	      <div class="number_rooms">
-		<i class="fa fa-bed fa-3x" aria-hidden="true"></i>
+		<i class="fa fa-list fa-3x" aria-hidden="true"></i>
 
 		<br />
 
-		{{ items.number_rooms }} Bedrooms
+		Total Inventory {{ items.stock }} grams
 	      </div>
 	      <div class="number_bathrooms">
-		<i class="fa fa-bath fa-3x" aria-hidden="true"></i>
+		<i class="fa fa-money fa-3x" aria-hidden="true"></i>
 
 		<br />
 
-		{{ items.number_bathrooms }} Bathroom
-
+		Price Per 3.5g {{ items.price }}
 	      </div>
 	    </div>
 
@@ -132,11 +133,7 @@
 		      USER
 		      **********************  -->
 
-		<div class="user">
-
-		  <strong>Owner: {{ items.strain }}</strong>
-
-		</div>
+		<div class="user"><strong>Marijuana Type: </strong>{{ items.cannabis_type }}</div>
 		<div class="description">
 
 		  {{ items.description }}

@@ -60,19 +60,17 @@ def instakush_dispensary(the_id=None):
                            cache_id=cache_id)
 
 @app.route('/dispensary/<the_id>/items')
-def instakush_dispensary_items(the_id=None):
+def instakush_dispensary_items(the_id):
     """
     template for instakush dispensary items infrastructure
     """
     cache_id = "?" + str(uuid.uuid4())
     drivers = storage.all('Driver').values()
     dispensary = storage.all('Dispensary').values()
-    items = storage.all('Item').values()
     item = storage.all('Item').values()
     return render_template('instakush_items.html',
                            dispensary=dispensary,
                            item=item,
-                           the_id=the_id,
                            cache_id=cache_id)
 
 if __name__ == "__main__":

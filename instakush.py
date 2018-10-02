@@ -62,7 +62,7 @@ class instakushCommand(cmd.Cmd):
             new_instance = object_dict[(args[0])]()
             for key, value in dictionary.items():
                 if "_" in value:
-                    value = value.replace("_", " ")
+                    value = value.replace("_", "_")
                 else:
                     try:
                         value = eval(value)
