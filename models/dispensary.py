@@ -18,3 +18,5 @@ class Dispensary(BaseModel, Base):
     username = Column(String(128), nullable=False)
     password = Column(String(128), nullable=False)
     address = Column(String(128), nullable=False)
+    lat = Column(String(128), nullable=False)
+    lon = Column(String(128), nullable=False)
