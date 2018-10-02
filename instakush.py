@@ -12,6 +12,7 @@ from models.driver import Driver
 from models.dispensary import Dispensary
 from models.item import Item
 from models.order import Order
+from models.location import Location
 from models import storage
 
 
@@ -21,6 +22,7 @@ object_dict = {"BaseModel": BaseModel,
                "Dispensary": Dispensary,
                "Item": Item,
                "Order": Order,
+               "Location": Location,
                }
 
 
@@ -80,7 +82,7 @@ class instakushCommand(cmd.Cmd):
 
     def do_show(self, args):
         '''
-            Print the string representation of an instance baed on
+            Print the string representation of an instance based on
             the class name and id given as args.
         '''
         args = shlex.split(args)
