@@ -16,8 +16,8 @@ class Dispensary
     password = ''
     address = ''
 
-create Dispensary name="The Apothecarium" username="apothecarium_staff" password="apotho13" address="2414 Lombard St, San Francisco, CA 94123"
-create Dispensary name="Grass Roots Dispensary" username="gr_staff" password="go_grassroots121" address="1077 Post St, San Francisco, CA 94109"
+create Dispensary name="The Apothecarium" username="apothecarium_staff" password="apotho13" address="2414 Lombard St, San Francisco, CA 94123" *** done
+create Dispensary name="Grass Roots Dispensary" username="gr_staff" password="go_grassroots121" address="1077 Post St, San Francisco, CA 94109" ** done
 create Dispensary name="The Green Cross" username="green_cross_staff" password="green_cross_88" address="4218 Mission St, San Francisco, CA 94112"
 
 
@@ -96,4 +96,32 @@ The Apothecarium (id:2da8148d-eddf-4d23-9518-161952a87b45)
 Realeaf+ (id:93c46608-67ff-43b4-98ff-a11e5f638817)
 Hidden Leaf (id:b123b185-fad0-4d9e-bcf9-c8cc6bbb1d4d)
 Barbary Coast (id:826e434a-5db1-43ae-b1b8-8244b0ed1776)
+
+
+Addresses
+~  ~  ~  ~  ~  ~  ~   ~  ~
+
+The Green Cross :  4218 Mission St, San Francisco, CA 94112
+long: -122.430650
+lat: 37.729770
+
+Grass roots : 1077 Post St, San Francisco, CA 94109
+long: -122.419410
+lat: 37.786630
+
+The Apothecarium :  2029 Market St, San Francisco, CA 94114
+long: -122.429410
+lat: 37.765870
+
+realeaf+ : 2069 Duck Creek Road, San Francisco, CA 94143
+long: -122.491035
+lat: 37.788662
+
+Hidden Leaf : 4329 Station Street, San Francisco, CA 94107
+long: -122.433998
+lat: 37.804985
+
+Barbary Coast Dispensary :  952 Mission St, San Francisco, CA 94103
+long: -122.417557
+lat: 37.751362
 
