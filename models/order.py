@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-    Class representing a lesson
+    Class representing a order.
 '''
 from models.base_model import BaseModel, Base
 import models

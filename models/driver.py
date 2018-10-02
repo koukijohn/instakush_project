@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-    Class representing a lesson
+    Class representing a Driver
 '''
 from models.base_model import BaseModel, Base
 import models
@@ -14,8 +14,8 @@ class Driver(BaseModel, Base):
         Definition of the Lesson class
     '''
     __tablename__ = 'driver'
-    name = Column(String(128), nullable=False)
-    location = Column(String(128), nullable=False)
-    username = Column(String(128), nullable=False)
-    password = Column(String(128), nullable=False)
-    marks = Column(String(128), nullable=False)
+    name = Column(String(128), nullable=True)
+    location = Column(String(128), nullable=True)
+    username = Column(String(128), nullable=True)
+    password = Column(String(128), nullable=True)
+    marks = Column(String(128), nullable=True)

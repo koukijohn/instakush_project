@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-    Class representing a lesson
+    Class representing our Location
 '''
 from models.base_model import BaseModel, Base
 import models
@@ -17,4 +17,3 @@ class Location(BaseModel, Base):
     dispensary_id = Column(String(128), nullable=False)
     lat = Column(String(128), nullable=False)
     lon = Column(String(128), nullable=False)
-    

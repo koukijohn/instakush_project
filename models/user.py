@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-    Class representing a lesson
+    Class representing a user
 '''
 from models.base_model import BaseModel, Base
 import models
