@@ -85,22 +85,20 @@
 	</section>
 
 	<section class="places">
-	  <h1>Dispensaries</h1>
+	  <h1>Items</h1>
 
 	  <!-- **********************
-	       DISPENSARIES
+	       Items
 	       ********************** -->
-	  {% for dispensaries in dispensary|sort(attribute='name') %}
-
+	  {% for items in item|sort(attribute='name') %}
 	  <article>
-
 	    <div class="title">
 
-	      <h2>{{ dispensaries.name }}</h2>
+	      <h2>{{ items.strain }}</h2>
 
 	      <div class="price_by_night">
 
-		{{ dispensaries.price_by_night }}
+		{{ items.price_by_night }}
 
 	      </div>
 	    </div>
@@ -110,7 +108,7 @@
 
 		<br />
 
-		{{ dispensaries.max_guest }} Guests
+		{{ items.max_guest }} Guests
 
 	      </div>
 	      <div class="number_rooms">
@@ -118,14 +116,14 @@
 
 		<br />
 
-		{{ dispensaries.number_rooms }} Bedrooms
+		{{ items.number_rooms }} Bedrooms
 	      </div>
 	      <div class="number_bathrooms">
 		<i class="fa fa-bath fa-3x" aria-hidden="true"></i>
 
 		<br />
 
-		{{ dispensaries.number_bathrooms }} Bathroom
+		{{ items.number_bathrooms }} Bathroom
 
 	      </div>
 	    </div>
@@ -136,18 +134,18 @@
 
 		<div class="user">
 
-		  <strong>Owner: {{ dispensaries.name }}</strong>
+		  <strong>Owner: {{ items.strain }}</strong>
 
 		</div>
 		<div class="description">
 
-		  {{ dispensaries.description }}
+		  {{ items.description }}
 
 		</div>
 
-	  </article> <!-- End 1 DISPENSARIES Article -->
+	  </article> <!-- End 1 ITEMS Article -->
 
-	    {% endfor %}
+	  {% endfor %}
 	</section>
       </div>
     </main>
