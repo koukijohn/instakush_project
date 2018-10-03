@@ -14,6 +14,7 @@ class Location(BaseModel, Base):
         Definition of the Location class
     '''
     __tablename__ = 'location'
-    dispensary_id = Column(String(128), nullable=False)
-    lat = Column(String(128), nullable=False)
-    lon = Column(String(128), nullable=False)
+    dispensary_id = Column(String(128), nullable=True)
+    lat = Column(String(128), nullable=True)
+    lon = Column(String(128), nullable=True)
+    img_link = Column(String(128), nullable=True)

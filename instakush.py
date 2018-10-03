@@ -60,11 +60,12 @@ class instakushCommand(cmd.Cmd):
             for x in args[1:]:
                 key = x.split("=")
                 dictionary[key[0]] = key[1]
-
+                print(1)
             new_instance = object_dict[(args[0])]()
             for key, value in dictionary.items():
                 if "_" in value:
                     value = value.replace("_", "_")
+                    print(2)
                 else:
                     try:
                         value = eval(value)
