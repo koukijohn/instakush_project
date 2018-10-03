@@ -82,7 +82,7 @@ class FileStorage:
                 class_name = val["__class__"]
                 class_name = models.classes[class_name]
                 FileStorage.__objects[key] = class_name(**val)
-        except FileNotFoundError:
+        except OSError:
             pass
 
     def delete(self, obj=None):

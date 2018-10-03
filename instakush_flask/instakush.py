@@ -31,9 +31,11 @@ def instakush_home(the_id=None):
     cache_id = "?" + str(uuid.uuid4())
     dispensary = storage.all('Dispensary').values()
     item = storage.all('Item').values()
+    location = storage.all('Location').values()
     return render_template('instakush_home.html',
                            dispensary=dispensary,
                            item=item,
+                           location=location,
                            cache_id=cache_id)
 
 @app.route('/drivers')

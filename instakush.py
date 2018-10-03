@@ -60,12 +60,10 @@ class instakushCommand(cmd.Cmd):
             for x in args[1:]:
                 key = x.split("=")
                 dictionary[key[0]] = key[1]
-                print(1)
             new_instance = object_dict[(args[0])]()
             for key, value in dictionary.items():
                 if "_" in value:
                     value = value.replace("_", "_")
-                    print(2)
                 else:
                     try:
                         value = eval(value)
@@ -74,10 +72,8 @@ class instakushCommand(cmd.Cmd):
                     if hasattr(new_instance, key):
                         setattr(new_instance, key, value)
                 new_instance.__dict__[key] = value
-
             new_instance.save()
             print(new_instance.id)
-
         except:
             print("** class doesn't exist **")
 

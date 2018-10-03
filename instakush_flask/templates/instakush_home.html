@@ -91,7 +91,6 @@
 	       DISPENSARIES
 	       ********************** -->
 	  {% for dispensaries in dispensary|sort(attribute='name') %}
-
 	  <article>
 
 	    <div class="title">
@@ -128,12 +127,19 @@
 	        <!-- **********************
 		      USER
 		      **********************  -->
-
-		<div class="user">
-
-		  <strong>Owner: {{ dispensaries.name }}</strong>
-
+		<div>
+                <br >
+                </div>
+		{% for location in location | sort(attribute='name') %}
+		{% if location.name == dispensaries.name %}
+		<div class ="marijuana_images">
+		  <img src="../..{{ url_for('static', filename = location.img_link ) }}" w\
+idth="370" height="230"/>
+		  <br>
+		  <br>
 		</div>
+		{% endif %}
+		{% endfor %}
 		<div class="description">
 
 		  {{ dispensaries.description }}
