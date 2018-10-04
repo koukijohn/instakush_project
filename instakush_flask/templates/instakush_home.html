@@ -40,7 +40,7 @@
 	 ********************** -->
 
     <header>
-      <div id="api_status"></div>
+      <a href="/home"><div id="box"></div></a>
     </header>
     <main>
       <div class="container">
@@ -52,29 +52,14 @@
 	<section class="filters">
 
 	  <!-- **********************
-	       STATES
+	       Locations
 	       ********************** -->
 
 	  <div class="locations">
 	    <h3>Zip Code:</h3>
-	    <h4>&nbsp;</h4>
-	  </div>
-
-	  <!-- **********************
-	       STRAINS
-	       ********************** -->
-
-	  <div class="amenities">
-	    <h3>Strains</h3>
-	    <h4>&nbsp;</h4>
-	    <ul class="popover">
-	      {% for amenity in i|sort(attribute='name') %}
-	      <LI>
-		<INPUT type="checkbox" style="margin-right:10px;" data-id={{ amenity.id }} data-name='{{ amenity.name }}'/>
-		{{ amenity.name }}
-	      </LI>
-	      {% endfor %}
-	    </ul>
+	    <form>
+	      <input type="text">
+	      </form>
 	  </div>
 
 	  <!-- **********************
@@ -94,8 +79,8 @@
 	  <article>
 
 	    <div class="title">
-
-	      <h2>{{ dispensaries.name }}</h2>
+	      
+	     <a href="/dispensary/{{ dispensaries.id }}/items"><h2>{{ dispensaries.name }}</h2></a>
 
 	    </div>
 	    <div class="information">
@@ -133,8 +118,7 @@
 		{% for location in location | sort(attribute='name') %}
 		{% if location.name == dispensaries.name %}
 		<div class ="marijuana_images">
-		  <img src="../..{{ url_for('static', filename = location.img_link ) }}" w\
-idth="370" height="230"/>
+		  <a href="/dispensary/{{ dispensaries.id }}/items"><img src="../..{{ url_for('static', filename = location.img_link ) }}" width="370" height="230"/></a>
 		  <br>
 		  <br>
 		</div>

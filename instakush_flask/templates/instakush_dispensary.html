@@ -57,25 +57,11 @@
 
 	  <div class="locations">
 	    <h3>Zip Code:</h3>
-	    <h4>&nbsp;</h4>
+	    <form>
+              <input type="text">
+              </form>
 	  </div>
 
-	  <!-- **********************
-	       STRAINS
-	       ********************** -->
-
-	  <div class="amenities">
-	    <h3>Strains</h3>
-	    <h4>&nbsp;</h4>
-	    <ul class="popover">
-	      {% for amenity in i|sort(attribute='name') %}
-	      <LI>
-		<INPUT type="checkbox" style="margin-right:10px;" data-id={{ amenity.id }} data-name='{{ amenity.name }}'/>
-		{{ amenity.name }}
-	      </LI>
-	      {% endfor %}
-	    </ul>
-	  </div>
 
 	  <!-- **********************
 	       SEARCH BUTTON
