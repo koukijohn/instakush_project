@@ -10,10 +10,3 @@ header {
 	border-bottom: 1px solid #CCCCCC;
 }
 
-header box {
-    width: 80px;
-    height: 80px;
-    position: relative;
-    z-index: 0;
-    overflow: hidden;
-}
