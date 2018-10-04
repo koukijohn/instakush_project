@@ -7,14 +7,14 @@ from models import storage
 import uuid
 
 # flask setup
-app = Flask(__name__)
-app.url_map.strict_slashes = False
+application = Flask(__name__)
+application.url_map.strict_slashes = False
 port = 7777
 host = '0.0.0.0'
 
 
 # begin flask page rendering
-@app.teardown_appcontext
+@application.teardown_appcontext
 def teardown_db(exception):
     """
     after each request, this method calls .close() (i.e. .remove()) on
@@ -22,7 +22,7 @@ def teardown_db(exception):
     """
     storage.close()
 
-@app.route('/login')
+@application.route('/login')
 def instakush_login(the_id=None):
     """                                                                         
     handles request to custom template with                                     
@@ -31,7 +31,7 @@ def instakush_login(the_id=None):
     return render_template('instakush_login.html')
 
 
-@app.route('/strains')
+@application.route('/strains')
 def instakush_strains(the_id=None):
     """                                                                                        
     handles request to custom template with                                                    
@@ -40,7 +40,7 @@ def instakush_strains(the_id=None):
     return render_template('instakush_strains.html')
 
 
-@app.route('/home')
+@application.route('/home')
 def instakush_home(the_id=None):
     """
     handles request to custom template with
@@ -55,7 +55,7 @@ def instakush_home(the_id=None):
                            location=location,
                            cache_id=cache_id)
 
-@app.route('/drivers')
+@application.route('/drivers')
 def instakush_drivers(the_id=None):
     """
     template for instakush driver infrastructure
@@ -66,7 +66,7 @@ def instakush_drivers(the_id=None):
                            drivers=drivers,
                            cache_id=cache_id)
 
-@app.route('/dispensary')
+@application.route('/dispensary')
 def instakush_dispensary(the_id=None):
     """
     template for instakush dispensary infrastructure
@@ -78,7 +78,7 @@ def instakush_dispensary(the_id=None):
                            dispensary=dispensary,
                            cache_id=cache_id)
 
-@app.route('/dispensary/<the_id>/items')
+@application.route('/dispensary/<the_id>/items')
 def instakush_dispensary_items(the_id):
     """
     template for instakush dispensary items infrastructure
@@ -95,5 +95,5 @@ def instakush_dispensary_items(the_id):
 
 if __name__ == "__main__":
     """
-    MAIN Flask App"""
-    app.run(host=host, port=port)
+    MAIN Flask Application"""
+    application.run(host=host, port=port)
