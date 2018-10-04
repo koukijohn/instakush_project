@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- HEAD -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>instakush</title>
+
+    <!-- JQuerry import -->
+    <SCRIPT src="https://code.jquery.com/jquery-3.2.1.min.js"></SCRIPT>
+
+    <!-- JS import  -->
+    <SCRIPT src="static/scripts/instakush.js"></SCRIPT>
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/Instakushlogo_v1.png') }}{{ cache_id }}" />
+
+    <!-- **********************
+	 CSS styles
+	 ********************** -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/4-common.css') }}{{ cache_id }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/3-header.css') }}{{ cache_id }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/3-footer.css') }}{{ cache_id }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/6-filters.css') }}{{ cache_id }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/8-places.css') }}{{ cache_id }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/font-awesome.css') }}{{ cache_id }}" />
+  </head>
+
+  <!-- **********************
+       BODY
+       ********************** -->
+
+  <body>
+
+
+    <!-- **********************
+	 HEADER
+	 ********************** -->
+
+    <header>
+      <img src="../..{{ url_for('static', filename='images/Instakushlogo_v1.png') }}" width="160" height="80">
+    </header>
+    <main>
+      <div class="container">
+
+
+      <!-- Trigger/Open The Modal -->
+      <button id="myBtn">Enter Website</button>
+
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+
+	<!-- Modal content -->
+	<div class="modal-content">
+	  <div class="modal-header">
+	    <span class="close">&times;</span>
+	    <h2>Welcome to instakush!</h2>
+	  </div>
+	  <div class="modal-body">
+	    <p>Please choose to enter based on your age.</p>
+	  </div>
+	  <div class="modal-footer">
+	     <button type="button" onclick="alert('Please come back again when you are 21 or older.')">Under 21.</button> 
+
+	     <button type="button" onclick="location.href='http://104.196.187.5/home';">21 or older.</>
+
+	  </div>
+	</div>
+
+      </div>
+
+      <script>
+	// Get the modal
+	var modal = document.getElementById('myModal');
+
+	// Get the button that opens the modal
+	var btn = document.getElementById("myBtn");
+
+	// Get the <span> element that closes the modal
+	  var span = document.getElementsByClassName("close")[0];
+
+	  // When the user clicks the button, open the modal 
+	  btn.onclick = function() {
+	  modal.style.display = "block";
+	  }
+
+	  // When the user clicks on <span> (x), close the modal
+	    span.onclick = function() {
+	    modal.style.display = "none";
+	    }
+
+	    // When the user clicks anywhere outside of the modal, close it
+	    window.onclick = function(event) {
+	    if (event.target == modal) {
+            modal.style.display = "none";
+	    }
+	    }
+      </script>
+
+
+      </div>
+
+    </main>
+
+    <!-- FOOTER -->
+
+
+
+    <footer>
+      By J&G for instakush
+    </footer>
+  </body>
+</html>

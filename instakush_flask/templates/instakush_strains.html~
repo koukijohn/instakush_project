@@ -62,22 +62,6 @@
               </form>
 	  </div>
 
-	  <!-- **********************
-	       STRAINS
-	       ********************** -->
-
-	  <div class="amenities">
-	    <h3>Strains</h3>
-	    <h4>&nbsp;</h4>
-	    <ul class="popover">
-	      {% for amenity in i|sort(attribute='name') %}
-	      <LI>
-		<INPUT type="checkbox" style="margin-right:10px;" data-id={{ amenity.id }} data-name='{{ amenity.name }}'/>
-		{{ amenity.name }}
-	      </LI>
-	      {% endfor %}
-	    </ul>
-	  </div>
 
 	  <!-- **********************
 	       SEARCH BUTTON
@@ -87,68 +71,18 @@
 	</section>
 
 	<section class="places">
-	  <h1>Items</h1>
+	  <h1>Strains</h1>
 
 	  <!-- **********************
-	       Items
-	       |sort(attribute='name')
+	       Strains
 	       ********************** -->
-	{% for dispensary in dispensary %}
-	{% for item in item | sort(attribute='strain') %}
-	  {% if dispensary.id == item.dispensary_id and item.dispensary_id == the_id  %}
+
 	  <article>
-	    <div class="title">
-	      <div class="information">
-		<h1>{{ item.strain }}</h1>
-		<h1>&nbsp;</h1>
-		</div>
-		<br>
+
+	    <div class="information"><h1> </h1>
+	    <div>w</div>
 	    </div>
-	    <div class ="marijuana_images">
-	      <img src="../..{{ url_for('static', filename = item.img_link ) }}" width="390" height="300"/>
-	      <br>
-	      <br>
-	    </div>
-	    <div class="information">
-	      <div class="max_guest">
-		<i class="fa fa-spoon fa-3x" aria-hidden="true"></i>
-
-		<br />
-		Serving Size {{ item.serving_size }}s
-
-	      </div>
-	      <div class="number_rooms">
-		<i class="fa fa-list fa-3x" aria-hidden="true"></i>
-
-		<br />
-
-		Total Inventory {{ item.stock }} grams
-	      </div>
-	      <div class="number_bathrooms">
-		<i class="fa fa-money fa-3x" aria-hidden="true"></i>
-
-		<br />
-
-		Price Per 3.5g {{ item.price }}
-	      </div>
-	    </div>
-
-	        <!-- **********************
-		      USER
-		      **********************  -->
-
-		<div class="user"><strong>Marijuana Type: </strong>{{ item.cannabis_type }}</div>
-		<div class="description">
-
-		  {{ item.description }}
-
-		</div>
-
-	  </article> <!-- End 1 ITEM Article -->
-	  {% else %}
-	  {% endif %}
-	  {% endfor %}
-	  {% endfor %}
+	  </article> <!-- End 1 DISPENSARIES Article -->
 
 	</section>
       </div>

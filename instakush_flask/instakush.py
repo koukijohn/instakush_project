@@ -22,6 +22,23 @@ def teardown_db(exception):
     """
     storage.close()
 
+@app.route('/login')
+def instakush_login(the_id=None):
+    """                                                                         
+    handles request to custom template with                                     
+    """
+    cache_id = "?" + str(uuid.uuid4())
+    return render_template('instakush_login.html')
+
+
+@app.route('/strains')
+def instakush_strains(the_id=None):
+    """                                                                                        
+    handles request to custom template with                                                    
+    """
+    cache_id = "?" + str(uuid.uuid4())
+    return render_template('instakush_strains.html')
+
 
 @app.route('/home')
 def instakush_home(the_id=None):
@@ -73,6 +90,7 @@ def instakush_dispensary_items(the_id):
     return render_template('instakush_items.html',
                            dispensary=dispensary,
                            item=item,
+                           the_id=the_id,
                            cache_id=cache_id)
 
 if __name__ == "__main__":

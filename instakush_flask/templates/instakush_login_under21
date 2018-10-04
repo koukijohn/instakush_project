@@ -1,0 +1,14 @@
+      <script>
+        function myFunction() {
+        var txt;
+        var link ="http://104.196.187.5/home"
+        if (confirm("Please press OK if you are over 21. Please press Cancel if you are under \
+21.")) {
+            txt = "Germ is the best";
+            window.location = link;
+        } else {
+            txt = "You are not of age yet. Please come back when you are 21.";
+        }
+        document.getElementById("demo").innerHTML = txt;
+        }
+      </script>
