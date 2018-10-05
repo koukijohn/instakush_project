@@ -5,6 +5,9 @@ Flask App that integrates with instakush static HTML Template
 from flask import Flask, render_template, url_for
 from models import storage
 import uuid
+import json
+import requests
+
 
 # flask setup
 application = Flask(__name__)
@@ -31,13 +34,25 @@ def instakush_login(the_id=None):
     return render_template('instakush_login.html')
 
 
+@application.route("/tweets")
+def instakush_tweets(the_id=None):
+    """                                                                                            
+    handles request to custom template with                                                        
+    """
+    cache_id = "?" + str(uuid.uuid4())
+    return render_template('instakush_tweets.html')
+
+
 @application.route('/strains')
 def instakush_strains(the_id=None):
     """                                                                                        
     handles request to custom template with                                                    
     """
     cache_id = "?" + str(uuid.uuid4())
-    return render_template('instakush_strains.html')
+    response = json.loads(requests.get("https://api.otreeba.com/v1/studies?sort=-createdAt"))
+    return render_template('instakush_strains.html',
+                           response=response,
+                           cache_id=cache_id)
 
 
 @application.route('/home')
