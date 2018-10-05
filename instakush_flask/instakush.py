@@ -22,7 +22,7 @@ def teardown_db(exception):
     """
     storage.close()
 
-@application.route('/login')
+@application.route("/")
 def instakush_login(the_id=None):
     """                                                                         
     handles request to custom template with                                     
