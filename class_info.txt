@@ -61,6 +61,18 @@ create Item strain="Gstik Hybrid" img_link="images/gstick_hybrids.png" dispensar
 create Item strain="Gstik Indica" img_link="images/gstick_indica.png" dispensary_id="" description="Ready to sink into your couch, because with this 29.1% THC indica, you will be asleep" price="$7" company="Gfarma" serving_size="1 gram" stock="132" cannabis_type="Indica"
 create Item strain="Grand Daddy Purple" img_link="images/gdp.png" dispensary_id="" description="Granddaddy Purple (or GDP) is a famous indica cross between Purple Urkle and Big Bud. This California staple inherits a complex grape and berry aroma from its Purple Urkle parent, while Big Bud passes on its oversized, compact bud structure. " price="$65" company="G NUGS" serving_size="3.5" stock="89" cannabis_type="Indica"
 
+create Item strain="Vanilla kush" img_link="images/vanilla_kush.png" dispensary_id="" description="This flavorful Indica packs a 22.68% amount of THC and is not recommended for first time users, get ready to go to bed because with this strain it's possible" price="$38" company="Flow Kana" serving_size="3.5 gram" stock="57" cannabis_type="Indica"
+create Item strain="Purple kush" img_link="images/purple_kush.png" dispensary_id="" description="This beautiful 17.00% THC packed strain found in Oakland, California will allow you to calm down and experience a mind-body high effect." price="$45" company="" serving_size="3.5" stock="77" cannabis_type="Indica"
+create Item strain="Super Sour Diesel" img_link="images/super_sour_diesel.png" dispensary_id="" description="This 27.86% THC induces a happy euphoric cerebal buzz and creative high." price="$37.50" company="Flow Kana" serving_size="3.5 gram" stock="100" cannabis_type="Hybrid"
+create Item strain="Chem Dog" img_link="images/chem_dog.png" dispensary_id="" description="This 23.45% THC strain will offer a very pungent, earthy diesel flavor and results in a relaxed, euphoric high with a touch of creativity floating on the periphery" price="$38" company="Flow Kana" serving_size="3.5 gram" stock="70" cannabis_type="Indica"
+create Item strain="" img_link="images/" dispensary_id="" description="Total THC: " price="" company="" serving_size="" stock="" cannabis_type=""
+create Item strain="" img_link="images/" dispensary_id="" description="Total THC: " price="" company="" serving_size="" stock="" cannabis_type=""
+create Item strain="" img_link="images/" dispensary_id="" description="Total THC: " price="" company="" serving_size="" stock="" cannabis_type=""
+
+
+
+
+
 =========================================
 
 class Order
