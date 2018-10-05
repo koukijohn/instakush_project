@@ -1,5 +1,6 @@
 // get strains
-$('#strains').click(function () {
+
+$("#strains").click(function () {
  alert("The paragraph was clicked.");
  $.getJSON('https://api.otreeba.com/v1/strains')
     .done(function(data) { 

@@ -13,6 +13,7 @@
 
     <!-- JS import  -->
     <SCRIPT src="static/scripts/instakush.js"></SCRIPT>
+    <SCRIPT src="static/scripts/strains.js"></SCRIPT>
 
     <!-- FAVICON -->
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/Instakushlogo_v1.png') }}{{ cache_id }}" />
@@ -55,22 +56,18 @@
 	       Locations
 	       ********************** -->
 
-	  <div class="locations">
-	    <h3>Zip Code:</h3>
-	    <form>
-	      <input type="text">
-	      </form>
-	  </div>
+
+	  <button id="disp">Home</button>
+
 
 	  <!-- **********************
 	       SEARCH BUTTON
 	       ********************** -->
 
-	  <button>Search</button>
+	  <button id="strains">Strains</button>
 	</section>
-
+	 <h1>Dispensaries</h1>
 	<section class="places">
-	  <h1>Dispensaries</h1>
 
 	  <!-- **********************
 	       DISPENSARIES
@@ -142,5 +139,10 @@
     <footer>
       By J&G for instakush
     </footer>
+    <script>
+      $("#strains").click(function () {
+      location.href = "http://instakush.website/strains"
+      })
+      </script>
   </body>
 </html>

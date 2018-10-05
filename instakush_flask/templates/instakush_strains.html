@@ -55,42 +55,28 @@
 	       STATES
 	       ********************** -->
 
-	  <div class="locations">
-	    <h3>Zip Code:</h3>
-	    <form>
-              <input type="text">
-              </form>
-	  </div>
+	  <button onclick="location.href = '/home'">Home</button>
 
 
 	  <!-- **********************
 	       SEARCH BUTTON
 	       ********************** -->
 
-	  <button>Search</button>
+	  <button>Strains</button>
 	</section>
-
+	<h1>Different Strains</h1>
 	<section class="places">
-	  <h1>Strains</h1>
 
 	  <!-- **********************
 	       Strains
 	       ********************** -->
 
-	  <article>
-
-	    <div class="information"><h1> </h1>
-	    <div>
-	  {% for item in response %}
-
-          {{ item[name] }}
-
-          {% endfor %}
-	    </div>
-	    <h1> </h1>
-	    </div>
-	  </article> <!-- End 1 DISPENSARIES Article -->
-
+	    {% for data in strains %}
+	    <article>
+              <h3>{{ data['name'] }}</h3>
+	      <p>{{ data['genetics']['names']  }}</p>
+            </article> 
+	    {% endfor  %}
 	</section>
       </div>
     </main>
@@ -100,5 +86,10 @@
     <footer>
       By J&G for instakush
     </footer>
+    <script>
+      $("#disp").click(function(){
+      alert("click");
+      location.href = "http://instakush.website/home"
+      })
   </body>
 </html>

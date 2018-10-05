@@ -2,7 +2,7 @@
 """
 Flask App that integrates with instakush static HTML Template
 """
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, jsonify
 from models import storage
 import uuid
 import json
@@ -49,9 +49,9 @@ def instakush_strains(the_id=None):
     handles request to custom template with                                                    
     """
     cache_id = "?" + str(uuid.uuid4())
-    response = json.loads(requests.get("https://api.otreeba.com/v1/studies?sort=-createdAt"))
+    response = requests.get("https://api.otreeba.com/v1/strains?sort=-createdAt").json()
     return render_template('instakush_strains.html',
-                           response=response,
+                           strains=response['data'],
                            cache_id=cache_id)
 
 

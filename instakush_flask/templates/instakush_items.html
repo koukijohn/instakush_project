@@ -55,39 +55,17 @@
 	       STATES
 	       ********************** -->
 
-	  <div class="locations">
-	    <h3>Zip Code:</h3>
-	    <form>
-              <input type="text">
-              </form>
-	  </div>
+	    <button id="disp">Home</button>
 
-	  <!-- **********************
-	       STRAINS
-	       ********************** -->
-
-	  <div class="amenities">
-	    <h3>Strains</h3>
-	    <h4>&nbsp;</h4>
-	    <ul class="popover">
-	      {% for amenity in i|sort(attribute='name') %}
-	      <LI>
-		<INPUT type="checkbox" style="margin-right:10px;" data-id={{ amenity.id }} data-name='{{ amenity.name }}'/>
-		{{ amenity.name }}
-	      </LI>
-	      {% endfor %}
-	    </ul>
-	  </div>
 
 	  <!-- **********************
 	       SEARCH BUTTON
 	       ********************** -->
 
-	  <button>Search</button>
+	  <button id="strains">Strains</button>
 	</section>
-
+	<h1>Items</h1>
 	<section class="places">
-	  <h1>Items</h1>
 
 	  <!-- **********************
 	       Items
@@ -144,6 +122,8 @@
 
 		</div>
 
+		<button id="cart">Add to Cart</button>
+
 	  </article> <!-- End 1 ITEM Article -->
 	  {% else %}
 	  {% endif %}
@@ -159,5 +139,16 @@
     <footer>
       By J&G for instakush
     </footer>
+     <script>
+      $("#strains").click(function () {
+      location.href = "http://instakush.website/strains"
+      })
+      $("#disp").click(function(){
+      location.href = "http://instakush.website/home"
+      })
+      $("#cart").click(function(){
+      alert("Sorry we have not implemented this feature yet.")
+      })
+      </script>
   </body>
 </html>

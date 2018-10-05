@@ -52,16 +52,15 @@
 	<section class="filters">
 
 	  <!-- **********************
-	       STATES
+	       Locations
 	       ********************** -->
 
 	  <div class="locations">
 	    <h3>Zip Code:</h3>
 	    <form>
-              <input type="text">
-              </form>
+	      <input type="text">
+	      </form>
 	  </div>
-
 
 	  <!-- **********************
 	       SEARCH BUTTON
@@ -71,19 +70,69 @@
 	</section>
 
 	<section class="places">
-	  <h1>Strains</h1>
+	  <h1>Dispensaries</h1>
 
 	  <!-- **********************
-	       Strains
+	       DISPENSARIES
 	       ********************** -->
-
+	  {% for dispensaries in dispensary|sort(attribute='name') %}
 	  <article>
 
-	    <div class="information"><h1> </h1>
-	    <div>w</div>
+	    <div class="title">
+	      
+	     <a href="/dispensary/{{ dispensaries.id }}/items"><h2>{{ dispensaries.name }}</h2></a>
+
 	    </div>
+	    <div class="information">
+	      <div class="max_guest">
+		<i class="fa fa-map-marker fa-3x" aria-hidden="true"></i>
+
+		<br />
+
+		{{ dispensaries.max_guest }} Distance
+
+	      </div>
+	      <div class="number_rooms">
+		<i class="fa fa-id-card fa-3x" aria-hidden="true"></i>
+
+		<br />
+
+		{{ dispensaries.number_rooms }} Drivers Available
+	      </div>
+	      <div class="number_bathrooms">
+		<i class="fa fa-bolt fa-3x" aria-hidden="true"></i>
+
+		<br />
+
+		{{ dispensaries.number_bathrooms }} Reviews
+
+	      </div>
+	    </div>
+
+	        <!-- **********************
+		      USER
+		      **********************  -->
+		<div>
+                <br >
+                </div>
+		{% for location in location | sort(attribute='name') %}
+		{% if location.name == dispensaries.name %}
+		<div class ="marijuana_images">
+		  <a href="/dispensary/{{ dispensaries.id }}/items"><img src="../..{{ url_for('static', filename = location.img_link ) }}" width="370" height="230"/></a>
+		  <br>
+		  <br>
+		</div>
+		{% endif %}
+		{% endfor %}
+		<div class="description">
+
+		  {{ dispensaries.description }}
+
+		</div>
+
 	  </article> <!-- End 1 DISPENSARIES Article -->
 
+	    {% endfor %}
 	</section>
       </div>
     </main>
